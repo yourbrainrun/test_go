@@ -17,7 +17,7 @@ func main() {
 	fmt.Println(string(bytesinf))
 	fmt.Println(buf.ReadString('\n'))
 
-	buf.Reset(r)
+	r.Reset(str)
 	buf = bufio.NewReader(r)
 	bytesinf, _ = buf.Peek(5)
 	fmt.Println(string(bytesinf))
