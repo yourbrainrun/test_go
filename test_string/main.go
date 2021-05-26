@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -11,4 +12,12 @@ func main() {
 
 	fmt.Println(sli)
 	fmt.Println(strings.Join(sli, ""))
+
+
+	str1 := "qqqqqqqq"
+	w, _ := os.Create("test.txt")
+
+	rp := strings.NewReplacer(str,str1)
+	n, _ := rp.WriteString(w, "gohomeDebug")
+	fmt.Println(n)
 }
