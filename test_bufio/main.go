@@ -12,14 +12,13 @@ func main() {
 
 	buf := bufio.NewReader(r)
 	bytesinf, _ := buf.Peek(5)
+
+	_, _ = buf.Discard(10)
 	fmt.Println(string(bytesinf))
 	fmt.Println(buf.ReadString('\n'))
-
-	bytesinf, _ = buf.Peek(5)
-	fmt.Println(string(bytesinf))
 
 	buf.Reset(r)
 	buf = bufio.NewReader(r)
 	bytesinf, _ = buf.Peek(5)
-	fmt.Println(string(bytesinf))  
+	fmt.Println(string(bytesinf))
 }
