@@ -20,4 +20,6 @@ func main() {
 	rp := strings.NewReplacer(str,str1)
 	n, _ := rp.WriteString(w, "gohomeDebug")
 	fmt.Println(n)
+
+	rp.Replace("dig")
 }
