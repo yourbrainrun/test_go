@@ -40,7 +40,7 @@ func main() {
 	chan1 := make(chan int, 10)
 	chan2 := make(chan int, 10)
 	if chan1 == chan2 {
-		fmt.Println("compare channel OK")
+		fmt.Println("compare channel equal OK")
 	} else {
 		fmt.Println("compare channel OK")
 	}
