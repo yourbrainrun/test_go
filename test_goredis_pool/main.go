@@ -1,24 +1,31 @@
 package main
 
 import (
+	"carina-exporter/helpers"
 	"context"
 	"fmt"
-	"github.com/yourbrainrun/test_go/test_goredis_pool/helpers"
+	"sync"
 )
 
 func main() {
+	wg := sync.WaitGroup{}
+	wg.Add(500)
 	for i := 0; i < 500; i++ {
-		go testConn()
+		go testConn(&wg)
 	}
+	wg.Wait()
 }
 
-func testConn() {
+func testConn(wg *sync.WaitGroup) {
+	defer wg.Done()
 	key := "test:key:list"
 	ctx := context.Background()
 	redisPool := helpers.GetRedisClient()
 	if str, err := redisPool.LPop(ctx, key).Result(); err == nil {
 		fmt.Println(str)
+
 	} else {
+		fmt.Println("err")
 		fmt.Println(err.Error())
 	}
 }

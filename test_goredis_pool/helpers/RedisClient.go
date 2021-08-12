@@ -1,8 +1,8 @@
 package helpers
 
 import (
+	"carina-exporter/configs"
 	"github.com/go-redis/redis/v8"
-	"github.com/yourbrainrun/test_go/test_goredis_pool/configs"
 	"sync"
 	"time"
 )
