@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"sync"
 )
-
+// go run main.go
 func main() {
 	wg := sync.WaitGroup{}
 	wg.Add(500)
