@@ -42,6 +42,5 @@ func (area *Area) GetData(name string) {
 
 			area.DataChan <- strSlice[2]
 		}
-
 	}
 }
