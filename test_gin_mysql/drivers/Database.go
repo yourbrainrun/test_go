@@ -5,6 +5,7 @@ import (
 	"github.com/yourbrainrun/test_go/test_gin_mysql/configs"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 	"sync"
 )
 
@@ -24,7 +25,9 @@ func GetDatabase() *gorm.DB {
 		)
 
 		var err error
-		databaseInstance, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+		databaseInstance, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
+			Logger: logger.Default.LogMode(logger.Info),
+		})
 		if err != nil {
 			panic(err)
 		}
