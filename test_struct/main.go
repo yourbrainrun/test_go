@@ -29,7 +29,6 @@ func NewUser(name string, age int) User {
 func main() {
 	// 自动做类型转换适配
 	test1()
-
 }
 
 func test1() {
