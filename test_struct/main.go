@@ -27,6 +27,20 @@ func NewUser(name string, age int) User {
 }
 
 func main() {
+	// 自动做类型转换适配
+	test1()
+
+}
+
+func test1() {
+	type my struct {
+		TestBool bool
+	}
+	var tBool my
+	fmt.Println(tBool)
+}
+
+func test() {
 	u1 := NewUser("lili", 23)
 	fmt.Println(u1.Get())
 	u1.Set("lili men")
@@ -39,6 +53,4 @@ func main() {
 	fmt.Println(u2.Get())
 	u2.Set("li dong men")
 	fmt.Println(u2.Get())
-
-	// 自动做类型转换适配
 }
