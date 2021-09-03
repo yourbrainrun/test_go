@@ -11,13 +11,22 @@ func main() {
 	gin.DisableConsoleColor()
 
 	//create()
-	test()
+	//test()
+	test1()
 
 	//router := gin.New()
 	//router.GET("/test", new(controller.Test).Test)
 	//_ = router.Run(":888")
 
 }
+
+func test1() {
+	db := drivers.GetDatabase()
+	var channel models.Channel
+	db.First(&channel, "id=?", 4)
+	fmt.Println(channel)
+}
+
 func test() {
 	db := drivers.GetDatabase()
 	var channel models.Channel
