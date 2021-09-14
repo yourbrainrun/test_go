@@ -8,6 +8,11 @@ import (
 )
 
 func main() {
+	var dd float64
+	dd = 23.22
+	ss := fmt.Sprintf("%f", dd)
+	fmt.Println(ss)
+
 	test := sync.Pool{
 		New: func() interface{} {
 			return rand.Int()
