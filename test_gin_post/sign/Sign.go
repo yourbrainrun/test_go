@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"net/url"
 	"sort"
 )
@@ -37,4 +38,19 @@ func GetSign(params url.Values, secret string) string {
 	buf.WriteString(secret)
 
 	return fmt.Sprintf("%x", sha256.Sum256(buf.Bytes()))
+}
+
+func Params(c *gin.Context) {
+	var err error
+	if err = c.Request.ParseMultipartForm(10); err == nil {
+
+	} else if err = c.Request.ParseForm(); err == nil {
+
+	} else {
+		fmt.Println(err.Error())
+		return
+	}
+
+	data := c.Request.PostForm
+	fmt.Println(data)
 }
