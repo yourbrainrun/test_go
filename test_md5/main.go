@@ -9,6 +9,7 @@ import (
 
 func main() {
 	str := "sadfasdfasdfas"
+	str = "app_idapp_id_valuenoncenonce_valuestream_urlhttp://test.com/alive/test123456"
 	buf := bytes.NewBuffer(nil)
 	buf.WriteString(str)
 	fmt.Println(fmt.Sprintf("%x", md5.Sum(buf.Bytes())))
