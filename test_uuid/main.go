@@ -7,6 +7,8 @@ import (
 
 func main() {
 	// panic on error
-	u2 := uuid.NewV4()
-	fmt.Println(u2)
+	for i := 0; i < 5; i++ {
+		u2 := uuid.NewV4()
+		fmt.Println(u2)
+	}
 }
