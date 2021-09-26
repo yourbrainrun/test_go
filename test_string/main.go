@@ -22,4 +22,8 @@ func main() {
 	fmt.Println(n)
 
 	rp.Replace("dig")
+
+	str123 := "123"
+	str124 := "1234"
+	fmt.Println(str124[len(str123):])
 }
