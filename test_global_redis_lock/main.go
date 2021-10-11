@@ -18,18 +18,18 @@ func init() {
 
 func main() {
 	for i := 10; i > 0; i-- {
-		//go test()
+		go test()
 	}
 	time.Sleep(1 * time.Second)
 
-	list()
+	//list()
 }
 
 func list() {
 	ctx := context.Background()
 	rdb := drivers.GetRedisClient()
 	key := "list:push"
-	rdb.lpush(ctx,key,"124.0.9.23")
+	rdb.LPush(ctx,key,"124.0.9.23")
 }
 
 func test() {
