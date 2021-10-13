@@ -9,7 +9,7 @@ import (
 
 func main() {
 	mux := http.NewServeMux()
-	pathPrefix := "/d/pprof/"
+	pathPrefix := "./debug/pprof/"
 	mux.HandleFunc(pathPrefix,
 		func(w http.ResponseWriter, r *http.Request) {
 			name := strings.TrimPrefix(r.URL.Path, pathPrefix)
