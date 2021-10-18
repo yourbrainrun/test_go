@@ -26,4 +26,9 @@ func main() {
 	str123 := "123"
 	str124 := "1234"
 	fmt.Println(str124[len(str123):])
+
+	sli = strings.Split("sdn://wss.wangxiao.eaydu.com/live_ali/x_3_1119892_51266","sdn://")
+
+	fmt.Println(sli[0],"one")
+	fmt.Println(sli[1])
 }
