@@ -7,10 +7,10 @@ import (
 )
 
 func main() {
-	key := "testkey"
+	key := "lOLWf2ubswSDrUSt6lfwLQ"
 
 	svc1 := crypt.NewOpensslAES128ECB(key)
-	enStr := "xquWr9JWshGZQSmcNuiuiKsHsI1SrJ27qV78RBBvXplqMVtejCoQM0OZTeF1bS4Z"
+	enStr := "Yzyz8R6AmgHvLQv5JoQq1ivFg7PXfg/ygNGhA1cjY/tqMVtejCoQM0OZTeF1bS4Z"
 	decodeString, err := base64.StdEncoding.DecodeString(enStr)
 	if err != nil {
 		return
@@ -18,7 +18,7 @@ func main() {
 	fmt.Println(string(decodeString))
 	fmt.Println(len(key))
 	str1 := svc1.Decrypt(string(decodeString))
-	fmt.Println(str1)
+	fmt.Println(str1 + "|")
 
 	return
 }
