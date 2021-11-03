@@ -10,8 +10,28 @@ import (
 
 func main() {
 	//test1()
-	test2()
+	//test2()
+
+	fmt.Println(test3())
 }
+func test3() bool {
+	str := "hello_"
+	length := len(str)
+	if length > 1 && length <= 65 {
+		match := regexp.MustCompile(`^[\w]+$`)
+		ret := match.FindAllString(str, -1)
+
+		length = len(ret)
+		if length > 0 {
+			return true
+		}
+
+		return false
+	} else {
+		return false
+	}
+}
+
 func test2() {
 	str := "PG12EEPGEcOtjBOfmkrL4oHSGFYbjQ9R\u0010\u0010\u0010\u0010\u0010\u0010\u0010\u0010\u0010\u0010\u0010\u0010\u0010\u0010\u0010\u0010"
 	over := strings.TrimRight(str, openssl.ZEROS_PADDING)
