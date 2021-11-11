@@ -12,8 +12,29 @@ func main() {
 	//test1()
 	//test2()
 
-	fmt.Println(test3())
+	//fmt.Println(test3())
+	fmt.Println(test4())
 }
+
+func test4() bool {
+	str := "hello_"
+	length := len(str)
+	if length > 1 && length <= 65 {
+		match := regexp.MustCompile(`[\s]+`)
+		ret := match.FindAllString(str, -1)
+
+		length = len(ret)
+		fmt.Println(ret)
+		if length > 0 {
+			return true
+		}
+
+		return false
+	} else {
+		return false
+	}
+}
+
 func test3() bool {
 	str := "hello_"
 	length := len(str)
