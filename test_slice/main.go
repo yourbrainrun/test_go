@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	"net/url"
 	"strconv"
 )
 
 func main() {
+	test2()
 	// map slice 都是引用 在函数中修改会反馈到 函数调用处
 	sli := make([]string, 5)
 	testSlice(sli, true)
@@ -18,6 +20,16 @@ func main() {
 	// slice append more then cap ,return no change
 	testSlice(sli, false)
 	fmt.Println(sli)
+}
+
+func test2() {
+	tempLicense := make([]map[string]string, 1)
+	tempLicense[0] = map[string]string{
+		"token":   url.QueryEscape("122222332323"),
+		"app_key": "23234",
+	}
+
+	fmt.Println(tempLicense)
 }
 
 func testSlice(temp []string, flag bool) {
