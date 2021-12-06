@@ -8,6 +8,7 @@ import (
 
 func main() {
 	fmt.Println(time.Now().Unix())
+	fmt.Println(time.Now().UnixNano())
 
 	parse, err := time.Parse("2006-01-02 15:04:05", "2021-08-25 14:25:33")
 	if err != nil {
