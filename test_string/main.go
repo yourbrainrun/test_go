@@ -5,6 +5,7 @@ import (
 	"github.com/forgoer/openssl"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -17,6 +18,10 @@ func main() {
 }
 
 func test4() bool {
+	num, _ := strconv.Atoi("")
+	fmt.Println(num)
+	return true
+
 	str := "hello_"
 	length := len(str)
 	if length > 1 && length <= 65 {
