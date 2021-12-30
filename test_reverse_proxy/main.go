@@ -27,8 +27,8 @@ func reverseProxy(c *gin.Context) *httputil.ReverseProxy {
 	director := func(req *http.Request) {
 		req.URL.Scheme = "https"
 		fmt.Println(c.Request.URL.Path, "proxy")
-		req.URL.Host = "bayer-elp-console-api-demo.cloudhub.vip"
-		req.Host = "bayer-elp-console-api-demo.cloudhub.vip"
+		req.URL.Host = "demo.xxx.vip"
+		req.Host = "demo.xxx.vip"
 		req.URL.Path = c.Request.URL.Path
 	}
 
