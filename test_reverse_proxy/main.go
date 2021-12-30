@@ -13,11 +13,8 @@ import (
 func main() {
 	router := gin.Default()
 	router.GET("/channel", func(c *gin.Context) {
-		fmt.Println(c.Request.URL)
-		fmt.Println(c.Request.Host, "one")
 		proxy := reverseProxy(c)
-		fmt.Println(c.Request.Header)
-		// 去除 304
+
 		delete(c.Request.Header, "If-None-Match")
 		proxy.ServeHTTP(c.Writer, c.Request)
 	})
@@ -31,13 +28,8 @@ func reverseProxy(c *gin.Context) *httputil.ReverseProxy {
 		req.URL.Scheme = "https"
 		fmt.Println(c.Request.URL.Path, "proxy")
 		req.URL.Host = "bayer-elp-console-api-demo.cloudhub.vip"
-		req.URL.Host = "bayer-elp-console-api-demo.cloudhub.vip"
 		req.Host = "bayer-elp-console-api-demo.cloudhub.vip"
 		req.URL.Path = "/channel" //c.Request.URL.Path
-		//req.URL.Path = singleJoiningSlash(target.Path, req.URL.Path)
-		//if _, ok := req.Header["User-Agent"]; !ok {
-		//	req.Header.Set("User-Agent", "")
-		//}
 	}
 
 	modifyFunc := func(res *http.Response) error {
