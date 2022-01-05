@@ -11,7 +11,7 @@ func main() {
 	router := gin.New()
 	router.POST("/test", post)
 	router.GET("/work", work)
-	router.Run(":999")
+	router.Run(":9900")
 }
 
 func post(c *gin.Context) {
@@ -28,8 +28,22 @@ func work(c *gin.Context) {
 	// http://127.0.0.1:999/work
 
 	fmt.Println("start work... ")
+	str := ""
+	for index, value := range c.Request.Header {
+		fmt.Println(index, "=>", value)
+		str += fmt.Sprintf("%s => %s", index, value)
+	}
 
-	go sonLine()
+	if c.Request.Header.Get("proxy") == "true" {
+		fmt.Println("proxy", "true")
+		str += "proxy:true"
+	} else {
+		fmt.Println("proxy", "false")
+		str += "proxy:false"
+	}
+
+	c.JSON(200, str)
+	//go sonLine()
 	fmt.Println("work over")
 }
 

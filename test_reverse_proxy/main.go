@@ -15,6 +15,12 @@ func main() {
 	router.GET("/*action", func(c *gin.Context) {
 		proxy := reverseProxy(c)
 
+		if c.Request.Header.Get("proxy") == "true" {
+			fmt.Println("proxy", "true")
+		} else {
+			fmt.Println("proxy", "false")
+		}
+
 		delete(c.Request.Header, "If-None-Match")
 		proxy.ServeHTTP(c.Writer, c.Request)
 	})
@@ -25,11 +31,14 @@ func main() {
 func reverseProxy(c *gin.Context) *httputil.ReverseProxy {
 
 	director := func(req *http.Request) {
-		req.URL.Scheme = "https"
+		req.URL.Scheme = "http"
 		fmt.Println(c.Request.URL.Path, "proxy")
-		req.URL.Host = "demo.xxx.vip"
-		req.Host = "demo.xxx.vip"
+		req.URL.Host = "localhost:9900"
+		req.Host = "localhost:9900"
 		req.URL.Path = c.Request.URL.Path
+		req.URL.Path = "/work"
+
+		req.Header.Set("proxy", "true")
 	}
 
 	modifyFunc := func(res *http.Response) error {
