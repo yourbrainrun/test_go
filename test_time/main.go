@@ -19,11 +19,13 @@ func main() {
 
 	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 
-	tt, err := time.Parse(time.RFC3339, "2021-10-26T19:00:55+08:00")
+	timeStr := "2021-10-26T19:00:55+08:00"
+	tt, err := time.Parse(time.RFC3339, timeStr)
 	if err != nil {
 		return
 	}
-	fmt.Println(tt.Unix(), "rfc3339", time.Now().Unix())
+	fmt.Println(tt.Unix(), "rfc3339", time.Now().Unix(), "test ---")
+	fmt.Println(tt.Format("2006-01-02 15:04:05"))
 
 	cun, err := time.Parse("2006-01-02 15:04:05", "2022-02-01 00:00:01")
 
