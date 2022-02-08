@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	sign "github.com/yourbrainrun/test_go/test_gin_post/sign"
+	"net/http"
 	"time"
 )
 
@@ -14,13 +15,27 @@ func main() {
 	router.Run(":9900")
 }
 
+type SetVideoPlayDelayRequest struct {
+	PlayOutDelay int `form:"playout_delay" binding:"required|numeric"`
+}
+
 func post(c *gin.Context) {
 	// 127.0.0.1:999/test
+	var playDelay SetVideoPlayDelayRequest
+	if err := c.ShouldBind(&playDelay); err != nil {
+		c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"bad": "params errors",
+		})
+	}
 
 	c.Request.ParseMultipartForm(12)
 	data := c.Request.Form
 	paramsSlice := sign.GetSign(data, "secret")
 	fmt.Println(paramsSlice)
+
+	c.JSON(http.StatusBadRequest, map[string]interface{}{
+		"ok": "params 0 ok numeric",
+	})
 
 }
 
