@@ -5,6 +5,7 @@ import (
 	"crypto/md5"
 	"fmt"
 	"io"
+	"unicode/utf8"
 )
 
 func main() {
@@ -20,4 +21,6 @@ func main() {
 	md5str2 := fmt.Sprintf("%x", w.Sum(nil))
 
 	fmt.Println(md5str2, len(md5str2))
+
+	fmt.Println(utf8.RuneCountInString("龙者神龟,fight!"))
 }
