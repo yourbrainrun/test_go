@@ -18,5 +18,6 @@ func main() {
 	io.WriteString(w, str)
 	//将str写入到w中
 	md5str2 := fmt.Sprintf("%x", w.Sum(nil))
-	fmt.Println(md5str2)
+
+	fmt.Println(md5str2, len(md5str2))
 }
