@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"google.golang.org/grpc/status"
 )
@@ -8,10 +10,18 @@ import (
 func main() {
 	err := ret()
 
+	type Data struct {
+		Code int `json:"code"`
+	}
+	var badData Data
 	code := status.Code(err)
 	msg := status.Convert(err).Message()
 	if code == 100001 {
-		fmt.Println(code, msg)
+		buf := bytes.NewBuffer(nil)
+		buf.WriteString(status.Convert(err).Message())
+		_ = json.Unmarshal(buf.Bytes(), &badData)
+		fmt.Println(badData, "bd", string(buf.Bytes()))
+		fmt.Println(msg, "msg")
 	} else {
 		fmt.Println("no")
 	}
