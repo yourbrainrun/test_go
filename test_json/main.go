@@ -16,6 +16,65 @@ type LastParams struct {
 }
 
 func main() {
+	test2()
+	//test1()
+}
+
+func test2() {
+	str := `{
+  "reqParamsStr": "[{\"app_id\":\"Y25hMXFsTE03Tw\"}]",
+  "mixingSessionId": "1f9b8571a740f3fa29cd80a890e5cd9a",
+  "reqTs": 1642067209019,
+  "agentID": "ms_cna_bjbgph-ali_172.16.0.213",
+  "isRescuer": false
+}`
+
+	outer := make(map[string]interface{}, 0)
+	buf := bytes.NewBuffer(nil)
+	buf.WriteString(str)
+	err := json.Unmarshal(buf.Bytes(), &outer)
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+		if value, ok := outer["reqParamsStr"]; ok {
+			fmt.Println(value)
+			if val, ok := value.(string); ok {
+				buf.Reset()
+				buf.WriteString(val)
+
+				floor2 := make([]map[string]interface{}, 0)
+				fmt.Println(val)
+				err = json.Unmarshal(buf.Bytes(), &floor2)
+				if err != nil {
+					return
+				} else {
+					for index, map1 := range floor2 {
+						map1["122"] = 3333
+						fmt.Println(index, map1)
+
+					}
+				}
+
+				fmt.Println(floor2, "floor2")
+
+				fmt.Println(outer, "outer")
+				outer["reqParamsStr"] = floor2
+				outerAdd(outer)
+				fmt.Println(outer, "outer ====")
+			}
+
+		} else {
+			fmt.Println("outer not found key")
+		}
+	}
+
+}
+
+func outerAdd(outer map[string]interface{}) {
+	outer["outer_add"] = "outer_add"
+}
+
+func test1() {
 	str := `{
   "reqParamsStr": "{\"app_id\":\"Y25hMXFsTE03Tw\",\"client_id\":\"randomuid_0.36712070929511254\",\"client_info\":\"qgstestrtcdnpubclientinfo\",\"client_ip\":\"115.171.217.69\",\"nonce\":\"5eb5d083-7610-427f-b174-285388110a4e\",\"options_str\":\"{}\",\"organization_id\":\"82065966\",\"project_type\":\"mcu\",\"region\":\"cna\",\"request_id\":\"1f9b8571a740f3fa29cd80a890e5cd9a\",\"sign\":\"1d3ef6dd6c4144b1a4201a9fbcf4bf4880a97c334ebd7445361a878607420fe3\",\"stream_url\":\"rtn://Y25hMXFsTE03Tw.streaming.cloudhub.vip/live/qgstest\",\"terminal_id\":\"jsTestTerminalId_968265357464565900\",\"timestamp\":\"1642074409011\"}",
   "mixingSessionId": "1f9b8571a740f3fa29cd80a890e5cd9a",
