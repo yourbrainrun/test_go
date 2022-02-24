@@ -44,7 +44,7 @@ func test3() {
 	fmt.Println(string(marshal))
 
 }
-
+// 类型转换需要逐层揭，不支持一步到位
 func dealMixingSource(outer map[string]interface{}) {
 	if value, ok := outer["mixingSources"]; ok {
 		if MixingSourcesSli, assertOk := value.([]interface{}); assertOk {
