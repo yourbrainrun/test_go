@@ -14,7 +14,14 @@ func main() {
 	//test2()
 
 	//fmt.Println(test3())
-	fmt.Println(test4())
+	//fmt.Println(test4())
+	func5()
+}
+
+func func5() {
+	str := "http://test.baidu.com/mix/test"
+	inNum := strings.Index(str, "/mix/")
+	fmt.Println(inNum)
 }
 
 func test4() bool {

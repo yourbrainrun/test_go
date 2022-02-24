@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"net/url"
 )
 
 type LastParams struct {
@@ -16,8 +17,60 @@ type LastParams struct {
 }
 
 func main() {
-	test2()
+	test3()
+	//test2()
 	//test1()
+}
+func test3() {
+	mixingConfigStr := `{"videoWidth":640,"videoHeight":360,"videoFrameRate":15,"videoBandWidth":400,"backgroundColor":0,"audioBandWidth":48,"audioChannels":1,"mixingExtraInfo":"","mixingSources":[{"streamUrl":"rtn://Y25hMjlZeGtjdTY.streaming.cloudhub.vip/live/qgstestmcu1","x":0,"y":0,"width":320,"height":180,"zOrder":0,"fit":true},{"streamUrl":"rtn://Y25hMjlZeGtjdTY.streaming.cloudhub.vip/live/qgstestmcu2","x":320,"y":180,"width":320,"height":180,"zOrder":0,"fit":true}]}`
+
+	outer := make(map[string]interface{}, 0)
+	buf := bytes.NewBuffer(nil)
+	buf.WriteString(mixingConfigStr)
+
+	err := json.Unmarshal(buf.Bytes(), &outer)
+	if err != nil {
+		return
+	}
+
+	dealMixingSource(outer)
+	//dealMixingExtraInfo(outer)
+
+	marshal, err := json.Marshal(outer)
+	if err != nil {
+		return
+	}
+	fmt.Println("============end ===========")
+	fmt.Println(string(marshal))
+
+}
+
+func dealMixingSource(outer map[string]interface{}) {
+	if value, ok := outer["mixingSources"]; ok {
+		if MixingSourcesSli, assertOk := value.([]interface{}); assertOk {
+			for _, mixSourceMap := range MixingSourcesSli {
+				if mixSource, assertOk := mixSourceMap.(map[string]interface{}); assertOk {
+					if streamUrl, ok := mixSource["streamUrl"]; ok {
+						if streamUrlStr, assertStr := streamUrl.(string); assertStr {
+							urlDetail, err := url.Parse(streamUrlStr)
+							if err != nil {
+								continue
+							}
+							mixSource["appId"] = urlDetail.Host
+						}
+					}
+				}
+			}
+		} else {
+			fmt.Println("========== assert ========")
+			fmt.Println("action", outer["mixingSources"])
+		}
+
+	} else {
+		fmt.Println("========== exist ========")
+		fmt.Println(outer["mixingSources"])
+		return
+	}
 }
 
 func test2() {
