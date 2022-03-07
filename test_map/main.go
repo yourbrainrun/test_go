@@ -16,6 +16,8 @@ func main() {
 	info.Age = 20
 	info.Name = "xx"
 	test(info)
+
+	fmt.Println(map[string]string{"name": "test"})
 }
 
 func test(info interface{}) {

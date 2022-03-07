@@ -6,7 +6,7 @@ func main() {
 	f(true)
 }
 
-func f(doponic bool) {
+func f(doPanic bool) {
 	defer func() {
 		if x := recover(); x != nil {
 			fmt.Printf("panicking with value %v\n", x)
@@ -15,12 +15,12 @@ func f(doponic bool) {
 		fmt.Printf("函数正常返回\n")
 	}()
 	fmt.Printf("之前\n")
-	p(doponic)
+	p(doPanic)
 	fmt.Printf("after\n")
 }
 
-func p(doponic bool) {
-	if doponic {
+func p(doPanic bool) {
+	if doPanic {
 		panic(3)
 	}
 }
