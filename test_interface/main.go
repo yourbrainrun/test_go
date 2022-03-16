@@ -1,29 +1,17 @@
 package main
 
-import "fmt"
-
-type sun interface {
-	say()
-}
-
-type holy interface {
-	sun
-	bible()
-}
-
-type My struct {
-	Name string
-}
-
-func (me My) say() {
-	fmt.Println(me.Name)
-}
-
-func (me *My) bible() {
-	fmt.Println(me.Name, " body not say not")
-}
+import (
+	"github.com/yourbrainrun/test_go/test_interface/abstract"
+	"github.com/yourbrainrun/test_go/test_interface/abstract/dog"
+	"github.com/yourbrainrun/test_go/test_interface/abstract/pig"
+)
 
 func main() {
+	//test1()
+	test2()
+}
+
+func test1() {
 	var t My
 	t.Name = "dog testis"
 
@@ -34,11 +22,14 @@ func main() {
 	holyBible(t1)
 }
 
-func ctrl(fac sun) {
-	fac.say()
+func test2() {
+	dog1 := dog.GetDog()
+	factory(dog1)
+
+	pig1 := pig.GetPig()
+	factory(pig1)
 }
 
-func holyBible(ho holy) {
-	ho.say()
-	ho.bible()
+func factory(animal abstract.Action) {
+	animal.Call()
 }
