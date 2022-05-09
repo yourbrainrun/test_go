@@ -12,12 +12,17 @@ func main() {
 	fmt.Println(detail.Host)
 	fmt.Println(detail.Path)
 	fmt.Println(detail.RawQuery)
+	if detail.Port() == "" {
+		fmt.Println("port empty")
+	} else {
+		fmt.Println(detail.Port(), "port")
+	}
 
 	query, err := url.ParseQuery(detail.RawQuery)
 	if err != nil {
 		return
 	}
 	for keys, values := range query {
-		fmt.Println(keys, values[0],"||")
+		fmt.Println(keys, values[0], "||")
 	}
 }
