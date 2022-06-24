@@ -15,7 +15,16 @@ func main() {
 
 	//fmt.Println(test3())
 	//fmt.Println(test4())
-	func5()
+	//func5()
+	split()
+}
+
+func split() {
+	str := "rtmp://push.roadofcloud.net/live/b502a06f034940039a6abae62f639001"
+	str = "1"
+	data := strings.Split(str, "/")
+	fmt.Println(data)
+	fmt.Println(data[len(data)-1])
 }
 
 func func5() {
